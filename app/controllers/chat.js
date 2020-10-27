@@ -1,6 +1,6 @@
 const {check, validationResult} = require('express-validator');
 
-module.exports.iniciaChat = function(application, req, resp){
+module.exports.iniciaChat = function (application, req, resp) {
 
     //
     dadosForm = req.body;
@@ -17,12 +17,10 @@ module.exports.iniciaChat = function(application, req, resp){
     }
 
     //
-    application
-        .get('io')
-        .emit('msgToClient', {
-            apelido:dadosForm.apelido,
-            mensagem:'Acabou de entrar no chat'
-        });
+    application.get('io').emit('msgToClient', {
+        apelido: dadosForm.apelido,
+        mensagem: 'Acabou de entrar no chat'
+    });
 
-    resp.render('chat');
+    resp.render('chat', {dadosForm:dadosForm});
 }
